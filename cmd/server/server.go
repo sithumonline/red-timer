@@ -2,6 +2,7 @@ package server
 
 import (
 	"net/http"
+	"os"
 
 	chiPrometheus "github.com/766b/chi-prometheus"
 	"github.com/go-chi/chi"
@@ -13,7 +14,6 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 
 	"github.com/sithumonline/red-timer/api/router"
-	"github.com/sithumonline/red-timer/config"
 	_ "github.com/sithumonline/red-timer/docs"
 )
 
@@ -47,7 +47,8 @@ func Run() {
 		MaxAge:           300,
 	}))
 
-	port := config.GetEnv("server.PORT")
+	//port := config.GetEnv("server.PORT")
+	port := os.Getenv("PORT")
 
 	r.Use(chiPrometheus.NewMiddleware("go-puso"))
 	r.Handle("/metrics", promhttp.Handler())
