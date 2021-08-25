@@ -14,7 +14,7 @@ var mainTime *time.Time
 
 func (obj *Time) GetTime() Time {
 	if mainTime == nil {
-		pointTime := time.Now().Add(time.Second * 60)
+		pointTime := time.Now().Add(time.Hour * 5)
 		mainTime = &pointTime
 	}
 	currentTime := time.Now()
@@ -22,7 +22,7 @@ func (obj *Time) GetTime() Time {
 
 	d := fmt.Sprintf("%v:%v:%v", int(difference.Hours()), int(difference.Minutes()), int(difference.Seconds()))
 	c := "white"
-	if int(difference.Seconds()) <= 10 {
+	if int(difference.Minutes()) <= 1 {
 		c = "red"
 	}
 	if int(difference.Seconds()) <= 0 {
