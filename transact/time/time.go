@@ -19,8 +19,7 @@ func (obj *Time) GetTime() Time {
 	}
 	currentTime := time.Now()
 	difference := mainTime.Sub(currentTime)
-
-	d := fmt.Sprintf("%v:%v:%v", int(difference.Hours()), int(difference.Minutes()), int(difference.Seconds()))
+	d := fmt.Sprintf("%v", difference)
 	c := "white"
 	if int(difference.Minutes()) <= 1 {
 		c = "red"
