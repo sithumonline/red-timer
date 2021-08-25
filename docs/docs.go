@@ -38,7 +38,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Puso"
+                    "Time"
                 ],
                 "summary": "Get time diff",
                 "responses": {
@@ -50,6 +50,26 @@ var doc = `{
                     },
                     "404": {
                         "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Time"
+                ],
+                "summary": "Create a new puso",
+                "responses": {
+                    "200": {
+                        "description": "successfully reset",
                         "schema": {
                             "type": "string"
                         }

@@ -21,5 +21,18 @@ paths:
             type: string
       summary: Get time diff
       tags:
-      - Puso
+      - Time
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successfully reset
+          schema:
+            type: string
+      summary: Create a new puso
+      tags:
+      - Time
 swagger: "2.0"

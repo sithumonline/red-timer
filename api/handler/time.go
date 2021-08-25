@@ -11,7 +11,7 @@ import (
 
 // GetTime
 // @Summary Get time diff
-// @Tags Puso
+// @Tags Time
 // @Accept json
 // @Produce json
 // @Success 200 {object} time.Time
@@ -23,4 +23,19 @@ func GetTime(w http.ResponseWriter, r *http.Request) {
 	o := t.GetTime()
 	fmt.Println(o)
 	RespondWithJSON(w, http.StatusOK, &o)
+}
+
+// ResetTime
+// @Summary Create a new puso
+// @Tags Time
+// @Accept json
+// @Produce json
+// @Success 200 {string} string	"successfully reset"
+// @Router	/time	[post]
+func ResetTime(w http.ResponseWriter, r *http.Request) {
+	t := time.Time{}
+
+	t.ResetTime()
+
+	RespondWithJSON(w, http.StatusOK, "successfully reset")
 }
