@@ -14,14 +14,14 @@ var mainTime *time.Time
 
 func (obj *Time) GetTime() Time {
 	if mainTime == nil {
-		pointTime := time.Now().Add(time.Hour * 5)
+		pointTime := time.Now().Add(time.Second * 10)
 		mainTime = &pointTime
 	}
 	currentTime := time.Now()
 	difference := mainTime.Sub(currentTime)
 	d := fmt.Sprintf("%v", difference)
 	c := "white"
-	if int(difference.Minutes()) <= 1 {
+	if int(difference.Seconds()) <= 5 {
 		c = "red"
 	}
 	if int(difference.Seconds()) <= 0 {
