@@ -39,3 +39,7 @@ func ResetTime(w http.ResponseWriter, r *http.Request) {
 
 	RespondWithJSON(w, http.StatusOK, "successfully reset")
 }
+
+func Ui(w http.ResponseWriter, r *http.Request) {
+	http.StripPrefix(r.RequestURI, http.FileServer(http.Dir("build"))).ServeHTTP(w, r)
+}

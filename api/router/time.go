@@ -11,6 +11,7 @@ func TimeRouter() chi.Router {
 
 	r.Post("/", handler.ResetTime)
 	r.Get("/", handler.GetTime)
+	r.Get("/ui", handler.Ui)
 
 	return r
 }

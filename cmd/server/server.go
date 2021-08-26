@@ -58,6 +58,8 @@ func Run() {
 	r.Mount("/healthz", router.HealthRoute())
 	r.Mount("/api/v1", router.Router())
 
+	r.Handle("/static/*", http.StripPrefix("/static", http.FileServer(http.Dir("build/static/"))))
+
 	log.Info("red-timer started listening on ", port)
 
 	if err := http.ListenAndServe(":"+port, r); err != nil {
