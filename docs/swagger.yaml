@@ -1,9 +1,138 @@
+definitions:
+  post.Post:
+    properties:
+      body:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
   /healthz:
     get:
       summary: Returns health of the service
+  /post:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/post.Post'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Get post list
+      tags:
+      - Post
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/post.Post'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successfully post created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Create a new post
+      tags:
+      - Post
+  /post/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: nil
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Delete post
+      tags:
+      - Post
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/post.Post'
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Get post
+      tags:
+      - Post
+    put:
+      consumes:
+      - application/json
+      description: Update post
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: successfully updated
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Update post
+      tags:
+      - Post
   /time:
     get:
       consumes:
