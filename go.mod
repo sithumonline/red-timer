@@ -7,6 +7,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/go-chi/chi v4.0.2+incompatible
 	github.com/go-chi/cors v1.2.0
+	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/jinzhu/gorm v1.9.16
 	github.com/prometheus/client_golang v1.3.0
 	github.com/sirupsen/logrus v1.8.1

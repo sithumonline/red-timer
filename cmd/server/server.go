@@ -2,7 +2,6 @@ package server
 
 import (
 	"net/http"
-	"os"
 
 	chiPrometheus "github.com/766b/chi-prometheus"
 	"github.com/go-chi/chi"
@@ -14,6 +13,7 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 
 	"github.com/sithumonline/red-timer/api/router"
+	"github.com/sithumonline/red-timer/api/websocket"
 	_ "github.com/sithumonline/red-timer/docs"
 )
 
@@ -57,6 +57,15 @@ func Run() {
 	))
 	r.Mount("/healthz", router.HealthRoute())
 	r.Mount("/api/v1", router.Router())
+
+	r.Get("/chat", func(w http.ResponseWriter, r *http.Request) {
+		http.StripPrefix(r.RequestURI, http.FileServer(http.Dir("ui"))).ServeHTTP(w, r)
+	})
+	hub := websocket.NewHub()
+	go hub.Run()
+	r.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+		websocket.ServeWs(hub, w, r)
+	})
 
 	log.Info("red-timer started listening on ", port)
 
