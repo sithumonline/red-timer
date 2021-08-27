@@ -2,6 +2,7 @@ package server
 
 import (
 	"net/http"
+	"os"
 
 	chiPrometheus "github.com/766b/chi-prometheus"
 	"github.com/go-chi/chi"
