@@ -10,7 +10,7 @@ WORKDIR /app
 
 RUN go build -ldflags="-w -s" -o go-puso .
 
-FROM alpine:3.13.4
+FROM alpine:3.22.2
 
 RUN apk add --no-cache libstdc++ libc6-compat
 
